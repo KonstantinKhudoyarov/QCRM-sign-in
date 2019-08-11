@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body,
 html {
     width: 100%;
@@ -6,8 +10,9 @@ html {
 
 body {
     font-size: 16px;
-    line-height: 1.4;
+    line-height: 1;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 img {

@@ -1,0 +1,32 @@
+@mixin placeholder($size: 16px, $style: normal, $color: #000000) {
+    &::-webkit-input-placeholder {
+        font-size: $size;
+        font-style: $style;
+        color: $color;
+    }
+
+    &::-moz-placeholder {
+        font-size: $size;
+        font-style: $style;
+        color: $color;
+    }
+
+    &:-ms-input-placeholder {
+        font-size: $size;
+        font-style: $style;
+        color: $color;
+    }
+
+    &:-moz-placeholder {
+        font-size: $size;
+        font-style: $style;
+        color: $color;
+    }
+
+}
+
+@mixin resolution($width) {
+    @media screen and (max-width: $width + 'px') {
+        @content;
+    }
+}
