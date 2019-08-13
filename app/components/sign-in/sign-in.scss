@@ -1,3 +1,41 @@
+/*animations*/
+
+@keyframes rotateForm {
+    0% {
+        transform: rotateX(-40deg);
+    }
+
+    85% {
+        transform: rotateX(5deg);
+    }
+
+    to {
+        transform: rotateX(0);
+    }
+}
+
+@keyframes rotateLogo {
+    from {
+        transform: translateZ(180px) rotateX(80deg);
+    }
+
+    to {
+        transform: translateZ(0) rotateX(0);
+    }
+}
+
+@keyframes returnLogoElements {
+    from {
+        transform: translateZ(250px) rotateX(50deg);
+    }
+
+    to {
+        transform: translateZ(0deg) rotateX(0deg);
+    }
+}
+
+/*END animations*/
+
 .sign-in {
     width: 100%;
     height: 100%;
@@ -6,6 +44,13 @@
     align-items: center;
     background: url('../img/sign-in-bg-1.jpg') 0 0 no-repeat;
     background-size: cover;
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    perspective-origin: 50% 50%;
+
+    @include r(360) {
+        padding: 0 10px;
+    }
 }
 
 .form {
@@ -15,17 +60,48 @@
     padding: 78px 40px 40px;
     text-align: center;
     background-color: rgba($bright-text-color, .8);
+    box-shadow: 0px 3px 32px 0px rgba($dark-text-color, 0.22);
+    transform-origin: center top;
+    animation: rotateForm 1s cubic-bezier(.32, .63, .92, .8) forwards;
+
+    @include r(767) {
+        animation: none;
+    }
 }
 
-.logo {
+.logo-wrap {
     position: absolute;
     top: -50px;
     left: 50%;
     width: 100px;
     height: 100px;
+    transform: translateX(-50%);
+    perspective: 500px;
+    transform-origin: center center;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     border-radius: 17px;
     background-color: $bright-text-color;
-    transform: translateX(-50%);
+    box-shadow: 0px 3px 12px 0px rgba($dark-text-color, .07);
+    animation: rotateLogo 1s cubic-bezier(0, .4, .5, 1) forwards;
+
+    @include r(767) {
+        animation: none;
+    }
+}
+
+.logo__inner {
+    position: relative;
+    width: 42px;
+    height: 70px;
+    perspective: 500px;
+    transform-style: preserve-3d;
 }
 
 .logo__element {
@@ -33,33 +109,39 @@
     width: 28px;
     height: 28px;
     border-radius: 4px;
+    opacity: .9;
+    transform-origin: center center;
+    animation: returnLogoElements 1s forwards;
+
+    @include r(767) {
+        animation: none;
+    }
 
     &_1 {
-        top: 15%;
-        left: 28%;
-        z-index: 1;
-        background-color: rgba(#fc8906, .7);
+        top: 0;
+        left: 0;
+        background-color: #ff9100;
     }
 
     &_2 {
-        top: 29%;
-        left: 42%;
-        z-index: 2;
-        background-color: rgba(#c40c86, .7);
+        top: 20%;
+        right: 0;
+        background-color: #d8449c;
+        animation-delay: .1s;
     }
 
     &_3 {
-        top: 43%;
-        left: 28%;
-        z-index: 1;
-        background-color: rgba(#0f80eb, .7);
+        top: 40%;
+        left: 0;
+        background-color: #00a4ff;
+        animation-delay: .2s;
     }
 
     &_4 {
-        top: 57%;
-        left: 42%;
-        z-index: 2;
-        background-color: rgba(#21b11c, .7);
+        top: 60%;
+        right: 0%;
+        background-color: #42bc48;
+        animation-delay: .3s;
     }
 }
 
@@ -77,6 +159,7 @@
 }
 
 .form__input {
+    font-family: HelveticaNeue, sans-serif;
     display: block;
     width: 100%;
     height: 40px;
@@ -90,7 +173,6 @@
     }
 
     &:focus {
-        border-width: 2px;
         border-color: $controls-color;
         box-shadow: inset 0px 1px 4px 0px rgba($dark-text-color, .39);
     }
@@ -109,6 +191,7 @@
 }
 
 .form__btn {
+    font-family: HelveticaNeue, sans-serif;
     font-size: 16px;
     color: $bright-text-color;
     cursor: pointer;
